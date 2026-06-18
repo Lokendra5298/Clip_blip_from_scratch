@@ -1,0 +1,81 @@
+<svg viewBox="0 0 1040 360" xmlns="http://www.w3.org/2000/svg" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrp" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#94a3b8"/>
+    </marker>
+    <style>
+      .title{fill:#0f172a;font-size:24px;font-weight:700;}
+      .card{fill:#ffffff;stroke:#e2e8f0;stroke-width:1.5;}
+      .phase{fill:#0f172a;font-size:14px;font-weight:700;}
+      .pnum{fill:#64748b;font-size:11px;font-weight:700;}
+      .file{font-family:ui-monospace,Menlo,Consolas,monospace;fill:#334155;font-size:12px;}
+      .ar{stroke:#94a3b8;stroke-width:2;fill:none;}
+      .base{fill:#eef2ff;stroke:#c7d2fe;stroke-width:1.4;}
+      .baseTx{font-family:ui-monospace,Menlo,Consolas,monospace;fill:#3730a3;font-size:13px;}
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1040" height="360" rx="16" fill="#f8fafc"/>
+  <text x="40" y="44" class="title">Pipeline &#8212; five phases, one config</text>
+
+  <!-- cards -->
+  <!-- phase 1 -->
+  <rect x="30" y="70" width="180" height="170" rx="12" class="card"/>
+  <rect x="30" y="70" width="180" height="6" rx="3" fill="#f59e0b"/>
+  <text x="46" y="98" class="pnum">PHASE 1</text>
+  <text x="46" y="116" class="phase">Data</text>
+  <text x="46" y="146" class="file">download.py</text>
+  <text x="46" y="168" class="file">tokenizer.py</text>
+  <text x="46" y="190" class="file">dataset.py</text>
+  <text x="46" y="212" class="file">sanity_check.py</text>
+
+  <!-- phase 2 -->
+  <rect x="230" y="70" width="180" height="170" rx="12" class="card"/>
+  <rect x="230" y="70" width="180" height="6" rx="3" fill="#059669"/>
+  <text x="246" y="98" class="pnum">PHASE 2</text>
+  <text x="246" y="116" class="phase">Model (CLIP)</text>
+  <text x="246" y="146" class="file">layers.py</text>
+  <text x="246" y="168" class="file">vision.py</text>
+  <text x="246" y="190" class="file">text.py</text>
+  <text x="246" y="212" class="file">clip.py</text>
+
+  <!-- phase 3 -->
+  <rect x="430" y="70" width="180" height="170" rx="12" class="card"/>
+  <rect x="430" y="70" width="180" height="6" rx="3" fill="#2563eb"/>
+  <text x="446" y="98" class="pnum">PHASE 3</text>
+  <text x="446" y="116" class="phase">Train CLIP</text>
+  <text x="446" y="146" class="file">train.py</text>
+  <text x="446" y="170" class="file" fill="#64748b">&#183; cosine + warmup</text>
+  <text x="446" y="190" class="file" fill="#64748b">&#183; AMP, checkpoints</text>
+  <text x="446" y="210" class="file" fill="#64748b">&#183; --overfit debug</text>
+
+  <!-- phase 4 -->
+  <rect x="630" y="70" width="180" height="170" rx="12" class="card"/>
+  <rect x="630" y="70" width="180" height="6" rx="3" fill="#7c3aed"/>
+  <text x="646" y="98" class="pnum">PHASE 4</text>
+  <text x="646" y="116" class="phase">Evaluate</text>
+  <text x="646" y="146" class="file">eval.py</text>
+  <text x="646" y="170" class="file" fill="#64748b">&#183; Recall@K</text>
+  <text x="646" y="190" class="file" fill="#64748b">&#183; zero-shot</text>
+  <text x="646" y="210" class="file" fill="#64748b">&#183; retrieval demo</text>
+
+  <!-- phase 5 -->
+  <rect x="830" y="70" width="180" height="170" rx="12" class="card"/>
+  <rect x="830" y="70" width="180" height="6" rx="3" fill="#e11d48"/>
+  <text x="846" y="98" class="pnum">PHASE 5</text>
+  <text x="846" y="116" class="phase">BLIP</text>
+  <text x="846" y="146" class="file">blip.py</text>
+  <text x="846" y="168" class="file">train_blip.py</text>
+  <text x="846" y="192" class="file" fill="#64748b">&#183; ITC + ITM + LM</text>
+  <text x="846" y="212" class="file" fill="#64748b">&#183; generate()</text>
+
+  <!-- arrows between cards -->
+  <path d="M210,155 L230,155" class="ar" marker-end="url(#arrp)"/>
+  <path d="M410,155 L430,155" class="ar" marker-end="url(#arrp)"/>
+  <path d="M610,155 L630,155" class="ar" marker-end="url(#arrp)"/>
+  <path d="M810,155 L830,155" class="ar" marker-end="url(#arrp)"/>
+
+  <!-- config base bar -->
+  <rect x="30" y="270" width="980" height="46" rx="10" class="base"/>
+  <text x="50" y="298" class="baseTx">config.py</text>
+  <text x="140" y="298" class="file" fill="#3730a3">&#8212; one dataclass of hyperparameters shared by every phase</text>
+</svg>

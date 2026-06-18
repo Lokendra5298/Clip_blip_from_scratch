@@ -1,0 +1,140 @@
+<svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg"
+     font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ah" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0,10 3.5,0 7" fill="#555"/>
+    </marker>
+    <marker id="ah_amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0,10 3.5,0 7" fill="#d97706"/>
+    </marker>
+    <linearGradient id="gPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e9d5ff"/><stop offset="100%" style="stop-color:#c4b5fd"/>
+    </linearGradient>
+    <linearGradient id="gGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a7f3d0"/><stop offset="100%" style="stop-color:#6ee7b7"/>
+    </linearGradient>
+    <filter id="sh"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000015"/></filter>
+  </defs>
+
+  <rect width="900" height="520" rx="16" fill="#ffffff"/>
+  <rect width="900" height="4" fill="#8b5cf6"/>
+  <rect width="900" height="52" rx="0" fill="#faf5ff"/>
+  <text x="28" y="33" font-size="22" font-weight="700" fill="#4c1d95">CLIP</text>
+  <text x="80" y="33" font-size="22" font-weight="400" fill="#475569"> — Zero-Shot Classification</text>
+  <text x="28" y="49" font-size="12" fill="#94a3b8">No labelled training data needed — classify by matching image embeddings to text prompts</text>
+
+  <!-- ── STEP 1: Build text classifiers ── -->
+  <!-- step bubble -->
+  <circle cx="46" cy="90" r="16" fill="#7c3aed"/>
+  <text x="46" y="95" font-size="13" font-weight="700" fill="white" text-anchor="middle">1</text>
+  <text x="72" y="95" font-size="14" font-weight="600" fill="#1e1b4b">Create text classifiers from class labels</text>
+
+  <!-- class list -->
+  <rect x="36" y="112" width="80" height="26" rx="5" fill="#f3e8ff" stroke="#a855f7" stroke-width="1.2"/>
+  <text x="76" y="129" font-size="13" fill="#6b21a8" text-anchor="middle">plane</text>
+  <rect x="36" y="142" width="80" height="26" rx="5" fill="#f3e8ff" stroke="#a855f7" stroke-width="1.2"/>
+  <text x="76" y="159" font-size="13" fill="#6b21a8" text-anchor="middle">car</text>
+  <rect x="36" y="172" width="80" height="26" rx="5" fill="#f3e8ff" stroke="#a855f7" stroke-width="1.2"/>
+  <text x="76" y="189" font-size="13" fill="#6b21a8" text-anchor="middle">dog</text>
+  <rect x="36" y="202" width="80" height="26" rx="5" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.8"/>
+  <text x="76" y="219" font-size="13" font-weight="700" fill="#4c1d95" text-anchor="middle">bird</text>
+  <text x="76" y="240" font-size="18" fill="#94a3b8" text-anchor="middle">⋮</text>
+
+  <!-- arrow to prompt template -->
+  <line x1="116" y1="185" x2="148" y2="185" stroke="#555" stroke-width="1.8" marker-end="url(#ah)"/>
+
+  <!-- prompt template box -->
+  <rect x="150" y="162" width="160" height="46" rx="8" fill="#fdf4ff" stroke="#c084fc" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="230" y="182" font-size="11" fill="#7e22ce" text-anchor="middle" font-style="italic">prompt template</text>
+  <text x="230" y="200" font-size="12" font-family="monospace" fill="#4c1d95" text-anchor="middle">"a photo of a {cls}"</text>
+
+  <!-- arrow to text encoder -->
+  <line x1="310" y1="185" x2="344" y2="185" stroke="#555" stroke-width="1.8" marker-end="url(#ah)"/>
+
+  <!-- text encoder trapezoid -->
+  <polygon points="346,152 450,162 450,208 346,218" fill="url(#gPurple)" stroke="#7c3aed" stroke-width="2" filter="url(#sh)"/>
+  <text x="398" y="182" font-size="12" font-weight="600" fill="#4c1d95" text-anchor="middle">Text</text>
+  <text x="398" y="198" font-size="12" font-weight="600" fill="#4c1d95" text-anchor="middle">Encoder</text>
+  <text x="398" y="212" font-size="10" fill="#6d28d9" text-anchor="middle">(shared weights)</text>
+
+  <!-- arrow out to T embeddings -->
+  <line x1="450" y1="185" x2="484" y2="185" stroke="#555" stroke-width="1.8" marker-end="url(#ah)"/>
+
+  <!-- T chips (class text embeddings) -->
+  <rect x="486" y="100" width="64" height="32" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="518" y="121" font-size="12" font-weight="700" fill="#4c1d95" text-anchor="middle">T_plane</text>
+  <rect x="486" y="140" width="64" height="32" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="518" y="161" font-size="12" font-weight="700" fill="#4c1d95" text-anchor="middle">T_car</text>
+  <rect x="486" y="180" width="64" height="32" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="518" y="201" font-size="12" font-weight="700" fill="#4c1d95" text-anchor="middle">T_dog</text>
+  <rect x="486" y="220" width="64" height="32" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="518" y="241" font-size="12" font-weight="700" fill="#4c1d95" text-anchor="middle">T_bird</text>
+
+  <!-- fan lines from (465,185) to T chips -->
+  <line x1="464" y1="185" x2="484" y2="116" stroke="#7c3aed" stroke-width="1.2"/>
+  <line x1="464" y1="185" x2="484" y2="156" stroke="#7c3aed" stroke-width="1.2"/>
+  <line x1="464" y1="185" x2="484" y2="196" stroke="#7c3aed" stroke-width="1.2"/>
+  <line x1="464" y1="185" x2="484" y2="236" stroke="#7c3aed" stroke-width="1.2"/>
+
+  <!-- ── STEP 2: Encode the image ── -->
+  <circle cx="46" cy="310" r="16" fill="#059669"/>
+  <text x="46" y="315" font-size="13" font-weight="700" fill="white" text-anchor="middle">2</text>
+  <text x="72" y="315" font-size="14" font-weight="600" fill="#065f46">Encode the query image</text>
+
+  <!-- image -->
+  <rect x="40" y="332" width="72" height="72" rx="8" fill="#bae6fd" stroke="#38bdf8" stroke-width="1.5" filter="url(#sh)"/>
+  <ellipse cx="62" cy="354" rx="10" ry="10" fill="#fde68a"/>
+  <path d="M44,400 Q62,372 80,400Z" fill="#4ade80"/>
+  <path d="M74,400 Q86,382 100,400Z" fill="#22c55e"/>
+  <line x1="112" y1="368" x2="146" y2="368" stroke="#555" stroke-width="1.8" marker-end="url(#ah)"/>
+
+  <!-- image encoder trapezoid -->
+  <polygon points="148,336 252,344 252,392 148,400" fill="url(#gGreen)" stroke="#059669" stroke-width="2" filter="url(#sh)"/>
+  <text x="200" y="364" font-size="12" font-weight="600" fill="#065f46" text-anchor="middle">Image</text>
+  <text x="200" y="380" font-size="12" font-weight="600" fill="#065f46" text-anchor="middle">Encoder</text>
+  <text x="200" y="394" font-size="10" fill="#047857" text-anchor="middle">ViT · CLS</text>
+
+  <!-- image embedding chip -->
+  <line x1="252" y1="368" x2="286" y2="368" stroke="#555" stroke-width="1.8" marker-end="url(#ah)"/>
+  <rect x="288" y="352" width="52" height="32" rx="6" fill="#d1fae5" stroke="#059669" stroke-width="1.8"/>
+  <text x="314" y="373" font-size="13" font-weight="700" fill="#065f46" text-anchor="middle">I₁</text>
+
+  <!-- ── STEP 3: Compare ── -->
+  <circle cx="46" cy="448" r="16" fill="#f59e0b"/>
+  <text x="46" y="453" font-size="13" font-weight="700" fill="white" text-anchor="middle">3</text>
+  <text x="72" y="453" font-size="14" font-weight="600" fill="#78350f">Compute cosine similarities → argmax → predicted class</text>
+
+  <!-- similarity score bars -->
+  <line x1="340" y1="368" x2="486" y2="116" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 3"/>
+  <line x1="340" y1="368" x2="486" y2="156" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 3"/>
+  <line x1="340" y1="368" x2="486" y2="196" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 3"/>
+  <line x1="340" y1="368" x2="486" y2="236" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 3"/>
+
+  <!-- score cells beside each T chip -->
+  <rect x="562" y="100" width="100" height="32" rx="4" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="562" y="100" width="20" height="32" rx="4" fill="#c7d2fe" stroke="none"/>
+  <text x="620" y="121" font-size="11" fill="#475569" text-anchor="middle">sim = 0.08</text>
+
+  <rect x="562" y="140" width="100" height="32" rx="4" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="562" y="140" width="35" height="32" rx="4" fill="#a5b4fc" stroke="none"/>
+  <text x="620" y="161" font-size="11" fill="#475569" text-anchor="middle">sim = 0.14</text>
+
+  <!-- WINNER -->
+  <rect x="562" y="180" width="100" height="32" rx="4" fill="#fef9c3" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="562" y="180" width="92" height="32" rx="4" fill="#fde68a" stroke="none"/>
+  <text x="614" y="201" font-size="11" font-weight="700" fill="#92400e" text-anchor="middle">sim = 0.87 ✓</text>
+
+  <rect x="562" y="220" width="100" height="32" rx="4" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="562" y="220" width="22" height="32" rx="4" fill="#c7d2fe" stroke="none"/>
+  <text x="620" y="241" font-size="11" fill="#475569" text-anchor="middle">sim = 0.09</text>
+
+  <!-- argmax arrow to output -->
+  <line x1="662" y1="196" x2="700" y2="196" stroke="#d97706" stroke-width="2" marker-end="url(#ah_amber)"/>
+  <rect x="702" y="174" width="170" height="44" rx="8" fill="#fffbeb" stroke="#f59e0b" stroke-width="2" filter="url(#sh)"/>
+  <text x="787" y="193" font-size="11" fill="#78350f" text-anchor="middle">argmax → class:</text>
+  <text x="787" y="211" font-size="14" font-weight="700" fill="#7c3aed" text-anchor="middle">"a photo of a dog"</text>
+
+  <!-- note -->
+  <rect x="28" y="474" width="844" height="34" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.2"/>
+  <text x="48" y="496" font-size="12" fill="#166534">The model was trained only on image–caption pairs — it never saw a classification label — yet it can classify correctly by comparing to natural language prompts</text>
+</svg>
