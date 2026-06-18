@@ -1,0 +1,14 @@
+# Core
+torch>=2.1
+torchvision>=0.16
+numpy
+pillow
+
+# Data download
+kagglehub
+
+# Figures / demos
+matplotlib
+
+# Optional: only needed for `eval.py --task tsne`
+scikit-learn
